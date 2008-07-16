@@ -18,7 +18,7 @@ import org.jdom.output.Format;
 
 import redbox.client.pinsend.*;
 
-public class AdHocSubmitAction extends Action {
+public class customPinsAction extends Action {
 
   private static PinSend pinSend   = null;
   private static SAXBuilder parser = null;
@@ -48,7 +48,7 @@ public class AdHocSubmitAction extends Action {
         parser = new SAXBuilder("org.apache.xerces.parsers.SAXParser");
       }
 
-      AdHocSubmitForm _form = (AdHocSubmitForm)form;
+      customPinsForm _form = (customPinsForm)form;
       dispatch = _form.getDispatch();
 
       command = request.getParameter("command");
@@ -84,7 +84,7 @@ public class AdHocSubmitAction extends Action {
     return (mapping.findForward("adhocsubmit"));
   }
 
-  private String submitPin(AdHocSubmitForm form) throws Exception {
+  private String submitPin(customPinsForm form) throws Exception {
 
     //pinSend.setString(form.getPin());
     pinSend.setString(form.getFormattedQuery());

@@ -1,12 +1,12 @@
 /*
- * AdHocSubmitForm.java
+ * customPinsForm.java
  */
 
 package redbox.server;
 
 import org.apache.struts.action.*;
 
-public class AdHocSubmitForm extends ActionForm {
+public class customPinsForm extends ActionForm {
 
   private String dispatch = null;
   private String pin      = null;
@@ -118,6 +118,7 @@ public class AdHocSubmitForm extends ActionForm {
           } else if (pins.equals("xpath")) {
 
                 q = "<PIN>  <HDT Version=\"1.0\">    <PINname>Query</PINname>    <PINtype>XMLQL</PINtype>  </HDT>  <QDT>    <Query language=\"xpath\" gcausage=\"false\"         >      <![CDATA[ " + getPin() + "      ]]>    </Query>  </QDT></PIN>";
+		q += "XPATH";
           }
 
           return q;
