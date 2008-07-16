@@ -34,7 +34,7 @@
           <th bgcolor='lavender' align='left'>Parameters</th>
         </tr>
 
-        <html:form action='adhocsubmit.do' name='adhocsubmitForm' type='redbox.server.AdHocSubmitForm' >
+        <html:form action='customPins.do' name='customPinsForm' type='redbox.server.AdHocSubmitForm' >
 
           <html:hidden property='dispatch' value='error'/>
 

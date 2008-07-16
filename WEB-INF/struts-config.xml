@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+
+  <!-- Data Source Configuration -->
+
+  <data-sources>
+    <!--
+    <data-source>
+     
+      <set-property property="description"
+                    value="MySQL REDBOX Data Source Configuration"/>
+
+      <set-property property="driverClass"
+                    value="com.mysql.jdbc.Driver"/>
+
+      <set-property property="maxCount"
+                    value="5"/>
+
+      <set-property property="minCount"
+                    value="1"/>
+
+      <set-property property="password"
+                    value=""/>
+
+      <set-property property="url"
+                    value="jdbc:mysql://localhost:3306/redbox"/>
+
+      <set-property property="user"
+                    value="root"/>
+
+    </data-source>
+    -->
+  </data-sources>
+
+
+  <!-- Form Bean Definitions -->
+
+  <form-beans>
+
+    <form-bean name="collectionsForm"
+               type="redbox.server.CollectionsForm"
+               />
+               
+    <form-bean name="collectionsModifyForm"
+               type="redbox.server.CollectionsModifyForm"
+               />
+
+    <form-bean name="collectionsBrowseForm"
+               type="redbox.server.CollectionsBrowseForm"
+               />               
+    
+    <form-bean name="collectionsDetailForm"
+               type="redbox.server.CollectionsDetailForm"
+               />
+               
+    <form-bean name="adhocsubmitForm"
+               type="redbox.server.AdHocSubmitForm" 
+               />               
+
+    <form-bean name="customPinsForm"
+               type="redbox.server.AdHocSubmitForm" 
+               />               
+
+    <form-bean name="schemasForm"
+               type="redbox.server.SchemasForm" 
+               />                   
+
+    <form-bean name="schemasDisplayForm"
+               type="redbox.server.SchemasDisplayForm" 
+               />                 
+               
+    <form-bean name="logsForm"
+               type="redbox.server.LogsForm" 
+               />                 
+
+    <form-bean name="usersForm"
+               type="redbox.server.UsersForm"
+               />
+               
+    <form-bean name="usersModifyForm"
+               type="redbox.server.UsersModifyForm"
+               />
+
+    <form-bean name="statusForm"
+               type="redbox.server.StatusForm"
+               /> 
+
+    <form-bean name="rulesForm"
+               type="redbox.server.RulesForm"
+               />
+
+    <form-bean name="rulesModifyForm"
+               type="redbox.server.RulesModifyForm"
+               />
+    <!-- sample form bean descriptor for an ActionForm
+
+    <form-bean name="inputForm"
+               type="app.InputForm"/>
+
+    end sample -->
+
+    <!-- sample form bean descriptor for a DynaActionForm
+
+      <form-bean name="logonForm"
+                 type="org.apache.struts.action.DynaActionForm">
+
+        <form-property name="username"
+                       type="java.lang.String"/>
+
+        <form-property name="password"
+                       type="java.lang.String"/>
+                       
+    end sample -->
+
+  </form-beans>
+
+  <!-- Global Exception Definitions -->
+
+  <global-exceptions>
+
+    <!-- sample exception handler
+
+    <exception key="expired.password"
+               type="app.ExpiredPasswordException"
+               path="/changePassword.jsp"/>
+
+    end sample -->
+
+  </global-exceptions>
+
+  <!-- Global Forward Definitions -->
+
+  <global-forwards>
+
+    <forward name="redbox"
+             path="/redbox.do"
+             />
+        
+    <forward name="status"
+             path="/status.do"
+             />
+        
+    <forward name="actors"
+             path="/actors.do"
+             />
+                 
+    <forward name="logs"
+             path="/logs.do?command=initialize"
+             />
+                 
+    <forward name="rules"
+             path="/rules.do?command=initialize"
+             />
+                 
+    <forward name="users"
+             path="/users.do?command=initialize" 
+             />
+                 
+    <forward name="collections"
+             path="/collections.do?command=initialize"
+             />
+                               
+    <forward name="subscriptions"
+             path="/subscriptions.do"
+             />
+                 
+    <forward name="schemas"
+             path="/schemas.do?command=initialize"
+             />
+                 
+    <forward name="adhocsubmit"
+             path="/adhocsubmit.do?command=initialize"
+             />
+                 
+    <forward name="customPins"
+             path="/customPins.do?command=initialize"
+             />
+                 
+    <forward name="querybyexample"
+             path="/querybyexample.do"
+             />
+                 
+    <forward name="reports"
+             path="/reports.do"
+             />
+                 
+    <!--
+    <forward name="test"
+             path="/test.do"
+             />
+    -->
+                 
+  </global-forwards>
+
+  <!-- Action Mapping Definitions -->
+
+  <action-mappings>
+
+    <action path="/redbox"
+            type="org.apache.struts.actions.ForwardAction"
+            parameter="/jsp/redbox.jsp"
+            />
+
+    <action path="/status"
+            type="redbox.server.StatusAction"
+	    name="statusForm"
+	    input="/jsp/status.jsp"
+            >
+      <forward name="success"
+               path="/jsp/status.jsp"
+               />
+    </action>
+
+    <action path="/actors"
+            type="redbox.server.ActorsAction"
+            >
+      <forward name="success"
+               path="/jsp/actors.jsp"
+               />
+    </action>
+
+    <action path="/logs"
+            type="redbox.server.LogsAction"
+            name="logsForm"
+            input="/jsp/logs.jsp"
+            >
+      <forward name="success"
+               path="/jsp/logs.jsp"
+               />
+    </action>
+
+    <action path="/rules"
+            type="redbox.server.RulesAction"
+            name="rulesForm"
+            input="/jsp/rules.jsp"
+            >
+      <forward name="success"
+               path="/jsp/rules.jsp"
+               />
+      <forward name="create_rule"
+               path="/rulesmodify.do?command=create"
+               />
+      <forward name="update_rule"
+               path="/rulesmodify.do?command=update"
+               />
+    </action>
+
+    <action path="/rulesmodify"
+            type="redbox.server.RulesModifyAction"
+            name="rulesModifyForm"
+            input="/jsp/rulesmodify.jsp"
+            >
+      <forward name="success"
+               path="/jsp/rulesmodify.jsp"
+               />
+      <forward name="parameter"
+               path="/jsp/rulesmodify.do"
+               />
+    </action>
+
+    <action path="/users"
+            type="redbox.server.UsersAction"
+            name="usersForm"
+            input="/jsp/users.jsp"
+            >
+      <forward name="success"
+               path="/jsp/users.jsp"
+               />
+      <forward name="create_user"
+               path="/usersmodify.do?command=create"
+               />
+      <forward name="update_user"
+               path="/usersmodify.do?command=update"
+               />                            
+    </action>
+
+    <action path="/usersmodify"
+            type="redbox.server.UsersModifyAction"
+            name="usersModifyForm"
+            input="/jsp/usersmodify.jsp"
+            >
+      <forward name="success"
+               path="/jsp/usersmodify.jsp"
+               />                              
+    </action>
+        
+    <action path="/collections"
+            type="redbox.server.CollectionsAction"
+            name="collectionsForm"
+            input="/jsp/collections.jsp"
+            >
+      <forward name="success"
+               path="/jsp/collections.jsp"
+               />
+      <forward name="create_collection"
+               path="/collectionsmodify.do?command=create"
+               />
+      <forward name="update_collection"
+               path="/collectionsmodify.do?command=update"
+               />
+      <forward name="browse_collection"
+               path="/collectionsbrowse.do?command=browse"
+               />
+      <forward name="details_collection"
+               path="/collectionsdetail.do?command=detail"
+               />                             
+    </action>
+
+    <action path="/collectionsmodify"
+            type="redbox.server.CollectionsModifyAction"
+            name="collectionsModifyForm"
+            >
+      <forward name="success"
+               path="/jsp/collectionsmodify.jsp"
+               />                              
+    </action>
+
+    <action path="/collectionsbrowse"
+            type="redbox.server.CollectionsBrowseAction"
+            name="collectionsBrowseForm"
+            input="/jsp/collectionsbrowse.jsp"
+            >
+      <forward name="success"
+               path="/jsp/collectionsbrowse.jsp"
+               />
+    </action>
+        
+    <action path="/collectionsdetail"
+            type="redbox.server.CollectionsDetailAction"
+            name="collectionsDetailForm"
+            >
+      <forward name="success"
+               path="/jsp/collectionsdetail.jsp"
+               />                              
+    </action>    
+            
+    <action path="/subscriptions"
+            type="redbox.server.SubscriptionsAction"
+            >
+      <forward name="success"
+               path="/jsp/subscriptions.jsp"
+               />
+    </action>
+        
+    <action path="/schemas"
+            type="redbox.server.SchemasAction"
+            name="schemasForm"
+            input="/jsp/schemas.jsp"
+            >
+      <forward name="success"
+               path="/jsp/schemas.jsp"
+               />
+      <forward name="display_schema"
+               path="/schemasdisplay.do?command=display"
+               />               
+    </action>
+
+    <action path="/schemasdisplay"
+            type="redbox.server.SchemasDisplayAction"
+            name="schemasDisplayForm"
+            input="/jsp/schemasdisplay.jsp"
+            >
+      <forward name="success"
+               path="/jsp/schemasdisplay.jsp"
+               />
+    </action>    
+            
+    <action path="/adhocsubmit"
+            type="redbox.server.AdHocSubmitAction"
+            name="adhocsubmitForm"
+            input="/jsp/adhocsubmit.jsp"
+            >
+      <forward name="success"
+               path="/jsp/adhocsubmit.jsp"
+               />
+      <forward name="submit_query"
+               path="/adhocsubmit.do?command=submit"
+               />               
+    </action>
+        
+    <action path="/customPins"
+            type="redbox.server.AdHocSubmitAction"
+            name="customPinsForm"
+            input="/jsp/customPins.jsp"
+            >
+      <forward name="success"
+               path="/jsp/customPins.jsp"
+               />
+      <forward name="submit_query"
+               path="/customPins.do?command=submit"
+               />               
+    </action>
+        
+    <action path="/querybyexample"
+            type="redbox.server.QueryByExampleAction"
+            >
+      <forward name="success"
+               path="/jsp/querybyexample.jsp"
+               />
+    </action>
+        
+    <action path="/reports"
+            type="redbox.server.ReportsAction"
+            >
+      <forward name="success"
+               path="/jsp/reports.jsp"
+               />
+    </action>
+
+    <!--        
+    <action path="/test"
+            type="redbox.server.TestAction"
+            >
+      <forward name="success"
+               path="/jsp/test.jsp"
+               />
+    </action>
+    -->
+                                                                                                                                        
+    <!-- sample input and input submit actions
+
+    <action path="/Input"
+            type="org.apache.struts.actions.ForwardAction"
+            parameter="/pages/Input.jsp"/>
+
+    <action path="/InputSubmit"
+            type="app.InputAction"
+            name="inputForm"
+            scope="request"
+            validate="true"
+            input="/pages/Input.jsp"/>
+
+    end samples -->
+
+  </action-mappings>
+
+  <!-- Controller Configuration -->
+
+  <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+  <!-- Message Resources Definitions -->
+
+  <message-resources parameter="resources.application"/>
+
+  <!-- Plug Ins Configuration -->
+
+
+  <!-- Tiles plugin  -->
+
+  <!--
+     This plugin initialize Tiles definition factory. This later can takes some
+     parameters explained here after. The plugin first read parameters from web.xml, then
+     overload them with parameters defined here. All parameters are optional.
+     
+     The plugin should be declared in each struts-config file.
+       - definitions-config: (optional) 
+         Specify configuration file names. There can be several comma 
+	 separated file names (default: ?? )
+       - moduleAware: (optional - struts1.1) 
+         Specify if the Tiles definition factory is module aware. If true (default), 
+	 there will be one factory for each Struts module. 
+	 If false, there will be one common factory for all module. In this later case, 
+	 it is still needed to declare one plugin per module. The factory will be 
+	 initialized with parameters found in the first initialized plugin (generally the
+	 one associated with the default module).
+	   true : One factory per module. (default)
+	   false : one single shared factory for all modules
+       - definitions-parser-validate: (optional)
+	 Specify if xml parser should validate the Tiles configuration file.
+	   true : validate. DTD should be specified in file header. (default)
+	   false : no validation
+			  
+     Paths found in Tiles definitions are relative to the main context.
+  -->
+
+  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+    
+    <set-property property="definitions-config" 
+                  value="/WEB-INF/tiles-defs.xml"
+                  />
+    
+    <set-property property="moduleAware" 
+                  value="true"
+                  />
+    
+    <set-property property="definitions-parser-validate" 
+                  value="true"
+                  />
+  
+  </plug-in>
+
+<!--
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+
+    <set-property property="pathnames"
+                  value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"
+                  />
+  </plug-in>
+-->
+
+</struts-config>
