@@ -86,86 +86,86 @@
               <table>
                 <tr>
                   <td><html:submit onclick="set('submit');" style="width: 9em;">SUBMIT</html:submit></td>
-				                </tr>
-				              </table>
-				            </td>
-				          </tr>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
 
-				        </html:form>
+	</html:form>
 
-				      </table>
+      </table>
 
-				    </td>
-				  </tr>
+    </td>
+  </tr>
 
-				</table>
+</table>
 
-				<script>
-				  var XmlqlQueryTemplate=
-				    '<PIN>\n' +
-				    '  <HDT Version="1.0">\n' +
-				    '    <PINname>Query</PINname>\n' +
-				    '    <PINtype>XMLQL</PINtype>\n' +
-				    '  </HDT>\n' +
-				    '  <QDT>\n' +
-				    '    <Query language="xmlql" gcausage="false" >\n' +
-				    '      <![CDATA[\n' +
-				    '        function query () {\n' +
-				    '          where <!-- insert where clause here -->\n' +
-				    '          in <!-- insert collection name here -->\n' +
-				    '          construct <!-- insert construct clause here -->\n' +
-				    '        }\n' +
-				    '      ]]>\n' +
-				    '    </Query>\n' +
-				    '  </QDT>\n' +
-				    '</PIN>\n';
+<script>
+  var XmlqlQueryTemplate=
+    '<PIN>\n' +
+    '  <HDT Version="1.0">\n' +
+    '    <PINname>Query</PINname>\n' +
+    '    <PINtype>XMLQL</PINtype>\n' +
+    '  </HDT>\n' +
+    '  <QDT>\n' +
+    '    <Query language="xmlql" gcausage="false" >\n' +
+    '      <![CDATA[\n' +
+    '        function query () {\n' +
+    '          where <!-- insert where clause here -->\n' +
+    '          in <!-- insert collection name here -->\n' +
+    '          construct <!-- insert construct clause here -->\n' +
+    '        }\n' +
+    '      ]]>\n' +
+    '    </Query>\n' +
+    '  </QDT>\n' +
+    '</PIN>\n';
 
-				  var XpathQueryTemplate=
-				    '<PIN>\n' +
-				    '  <HDT Version="1.0">\n' +
-				    '    <PINname>Query</PINname>\n' +
-				    '    <PINtype>XMLQL</PINtype>\n' +
-				    '  </HDT>\n' +
-				    '  <QDT>\n' +
-				    '    <Query language="xpath" gcausage="false">\n' +
-				    '      <![CDATA[\n' +
-				    '        <!-- Insert XPATH statement here -->\n' +
-					    '      ]]>\n' +
-					    '    </Query>\n' +
-					    '  </QDT>\n' +
-					    '</PIN>\n';
+  var XpathQueryTemplate=
+    '<PIN>\n' +
+    '  <HDT Version="1.0">\n' +
+    '    <PINname>Query</PINname>\n' +
+    '    <PINtype>XMLQL</PINtype>\n' +
+    '  </HDT>\n' +
+    '  <QDT>\n' +
+    '    <Query language="xpath" gcausage="false">\n' +
+    '      <![CDATA[\n' +
+    '        <!-- Insert XPATH statement here -->\n' +
+    '      ]]>\n' +
+    '    </Query>\n' +
+    '  </QDT>\n' +
+    '</PIN>\n';
 
-					  var SqlQueryTemplate=
-					    '<PIN>\n' +
-					    '  <HDT Version="1.0">\n' +
-					    '    <PINname>Query</PINname>\n' +
-					    '    <PINtype>MySQL</PINtype>\n' +
-					    '  </HDT>\n' +
-					    '  <QDT>\n' +
-					    '    <Query>\n' +
-					    '      <![CDATA[\n' +
-					    '        <!-- Insert SQL statement(s) here separated with semicolons \';\' -->\n' +
-					    '      ]]>\n' +
-					    '    </Query>\n' +
-					    '  </QDT>\n' +
-					    '</PIN>\n';
+  var SqlQueryTemplate=
+    '<PIN>\n' +
+    '  <HDT Version="1.0">\n' +
+    '    <PINname>Query</PINname>\n' +
+    '    <PINtype>MySQL</PINtype>\n' +
+    '  </HDT>\n' +
+    '  <QDT>\n' +
+    '    <Query>\n' +
+    '      <![CDATA[\n' +
+    '        <!-- Insert SQL statement(s) here separated with semicolons \';\' -->\n' +
+    '      ]]>\n' +
+    '    </Query>\n' +
+    '  </QDT>\n' +
+    '</PIN>\n';
 
-					  var ListRulesTemplate=
-					    '<PIN>\n' +
-					    '  <HDT>\n' +
-					    '    <PINname>REDBOX_Administration</PINname>\n' +
-					    '    <PINtype>listRules</PINtype>\n' +
-					    '  </HDT>\n' +
-					    '</PIN>\n';
+  var ListRulesTemplate=
+    '<PIN>\n' +
+    '  <HDT>\n' +
+    '    <PINname>REDBOX_Administration</PINname>\n' +
+    '    <PINtype>listRules</PINtype>\n' +
+    '  </HDT>\n' +
+    '</PIN>\n';
 
-					  var RedboxStatusTemplate=
-					    '<PIN>\n' +
-					    '  <HDT>\n' +
-					    '    <PINname>REDBOX_Administration</PINname>\n' +
-					    '    <PINtype>redboxStatus</PINtype>\n' +
-					    '  </HDT>\n' +
-					    '</PIN>\n';
-					</script>
+  var RedboxStatusTemplate=
+    '<PIN>\n' +
+    '  <HDT>\n' +
+    '    <PINname>REDBOX_Administration</PINname>\n' +
+    '    <PINtype>redboxStatus</PINtype>\n' +
+    '  </HDT>\n' +
+    '</PIN>\n';
+</script>
 
 
-					<%@ include file="/jsp/footer.jsp" %>
+<%@ include file="/jsp/footer.jsp" %>
