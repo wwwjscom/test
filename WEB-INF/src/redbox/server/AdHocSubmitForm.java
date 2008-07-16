@@ -24,7 +24,7 @@ public class AdHocSubmitForm extends ActionForm {
   }
 
   public void setPin(String pin) {
-     28     this.pin = pin;
+     this.pin = pin;
   }
 
   public String getPin() {
