@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<!-- /**                                                            -->
+<!--  * Classification	UNCLASSIFIED                                -->
+<!--  *                                                             -->
+<!--  * Title		web.xml                                     -->
+<!--  *                                                             -->
+<!--  * @author     Fred Ingham, Bit Systems, Inc.                  -->
+<!--  * @version	$Id: web.xml,v 1.5 2005/10/18 14:57:54 condass Exp $                                        -->
+<!--  */                                                            -->
+
+<!-- /**                                                            -->
+<!--  * This file is used to control the operation of Tomcat        -->
+<!--  * This file will change during normal Redbox operation        -->
+<!--  */                                                            -->
+
+<web-app>
+  <display-name>REDBOX Management Application</display-name>
+  
+  <!-- icon?                -->
+  <!-- description?         -->
+  <!-- distributable?       -->
+  <!-- context-parm*        -->
+  
+  <context-param>
+    <param-name>rb.tomcat.port</param-name>
+    <param-value>8080</param-value>  
+  </context-param>
+  
+  <!-- filter*              -->
+  <!-- filter-mapping*      -->
+  <!-- listener*            -->
+  
+  <!-- servlet*             --> 
+
+  <servlet>  
+    <servlet-name>HttpGateway</servlet-name>
+    <servlet-class>redbox.server.HttpGatewayServlet</servlet-class>
+    <init-param>
+      <param-name>rb.server.ipaddress</param-name>
+      <param-value>localhost</param-value>
+    </init-param>
+    <init-param>
+      <param-name>rb.server.port</param-name>
+      <param-value>4444</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet>  
+    <servlet-name>xmlql</servlet-name>
+    <servlet-class>redbox.server.XmlqlServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+    <init-param>
+      <param-name>redbox.server.saxbuilder</param-name>
+      <param-value>org.apache.xerces.parsers.SAXParser</param-value>
+    </init-param>
+    <init-param>
+      <param-name>redbox.server.jdbcUrl</param-name>
+      <param-value>jdbc:mysql://localhost/redbox?user=xmlqlservlet</param-value>
+    </init-param>
+    <init-param>
+      <param-name>redbox.server.jdbcClass</param-name>
+      <param-value>com.mysql.jdbc.Driver</param-value>
+    </init-param>
+    <init-param>
+      <param-name>redbox.server.connectionPoolSize</param-name>
+      <param-value>12</param-value>
+    </init-param>
+    <init-param>
+      <param-name>redbox.server.logLevel</param-name>
+      <param-value>INFO</param-value>
+    </init-param>
+    <init-param>
+      <param-name>redbox.server.logDirectory</param-name>
+      <param-value>/redbox-local/logs</param-value>
+    </init-param>
+    <init-param>
+      <param-name>redbox.server.storedQueriesDirectory</param-name>
+      <param-value>/redbox-local/storedQueries</param-value>
+    </init-param>
+  </servlet> 
+  
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>2</param-value>
+    </init-param>
+    <init-param>
+      <param-name>detail</param-name>
+      <param-value>2</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>  
+  
+  <servlet>
+    <servlet-name>Sample</servlet-name>
+    <servlet-class>redbox.server.SampleServlet</servlet-class>
+  </servlet>
+
+  <!-- servlet-mapping*     -->
+  
+  <servlet-mapping>
+    <servlet-name>HttpGateway</servlet-name>
+    <url-pattern>/HttpGateway</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>xmlql</servlet-name>
+    <url-pattern>/xmlql</url-pattern>
+  </servlet-mapping>  
+                
+  <servlet-mapping>
+    <servlet-name>Sample</servlet-name>
+    <url-pattern>/Sample</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <!-- session-config*      --> 
+  <!-- mime-mapping*        --> 
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- error-page*          -->         
+  
+  <!-- taglib*              --> 
+
+  <taglib>
+    <taglib-uri>/tags/jakarta-datetime</taglib-uri>
+    <taglib-location>/WEB-INF/taglibs-datetime.tld</taglib-location>
+  </taglib>
+    
+  <taglib>
+    <taglib-uri>/tags/struts-bean</taglib-uri>
+    <taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/struts-html</taglib-uri>
+    <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/struts-logic</taglib-uri>
+    <taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/struts-nested</taglib-uri>
+    <taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/struts-tiles</taglib-uri>
+    <taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+    <taglib-location>/WEB-INF/c.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>http://java.sun.com/jstl/fmt</taglib-uri>
+    <taglib-location>/WEB-INF/fmt.tld</taglib-location>
+  </taglib>
+  
+  <taglib>
+    <taglib-uri>http://java.sun.com/jstl/xml</taglib-uri>
+    <taglib-location>/WEB-INF/x.tld</taglib-location>
+  </taglib>
+  
+  <taglib>
+    <taglib-uri>http://java.sun.com/jstl/sql</taglib-uri>
+    <taglib-location>/WEB-INF/sql.tld</taglib-location>
+  </taglib> 
+  
+  <!-- resource-env-ref*    --> 
+  <!-- resource-ref*        --> 
+    
+  <!-- security-constraint* -->   
+  
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Protected Area</web-resource-name>
+      <url-pattern>/servlet/Status</url-pattern>
+	    
+      <http-method>DELETE</http-method>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+      <http-method>PUT</http-method>
+    </web-resource-collection>
+      
+    <auth-constraint>
+      <role-name>admin</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <!-- login-config?        --> 
+  
+  <!-- Default login configuration uses BASIC authentication -->
+  <!--
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>Redbox Basic Authentication Area</realm-name>
+  </login-config>
+  -->
+
+  <!-- Default login configuration uses form-based authentication -->
+
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>Redbox Form-Based Authentication Area</realm-name>
+    <form-login-config>
+      <form-login-page>/jsp/login.jsp</form-login-page>
+      <form-error-page>/jsp/error.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
+
+  <!-- security-role*       --> 
+  <!-- env-entry*           --> 
+  <!-- ejb-ref*             --> 
+  <!-- ejb-local-ref*       -->   
+  
+</web-app>
